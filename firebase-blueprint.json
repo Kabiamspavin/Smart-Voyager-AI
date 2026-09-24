@@ -1,0 +1,62 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile with authentication and travel preferences",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string", "format": "email" },
+        "displayName": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "role": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "preferences": { "type": "object" }
+      },
+      "required": ["email"]
+    },
+    "Trip": {
+      "title": "Trip",
+      "description": "User travel itinerary, bookings, and budget",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "title": { "type": "string" },
+        "origin": { "type": "string" },
+        "destination": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["userId", "title", "destination"]
+    },
+    "TripReview": {
+      "title": "TripReview",
+      "description": "Ratings and feedback for completed trip destinations and activities to refine AI travel recommendations",
+      "type": "object",
+      "properties": {
+        "trip_id": { "type": "string" },
+        "user_id": { "type": "string" },
+        "destination": { "type": "string" },
+        "destination_rating": { "type": "number" },
+        "destination_feedback": { "type": "string" },
+        "activity_ratings": { "type": "array" },
+        "highlights": { "type": "array" },
+        "created_at": { "type": "string", "format": "date-time" },
+        "updated_at": { "type": "string", "format": "date-time" }
+      },
+      "required": ["trip_id", "user_id", "destination", "destination_rating"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profile documents"
+    },
+    "/users/{userId}/trips/{tripId}": {
+      "schema": "Trip",
+      "description": "User trips accessible by the trip owner from any device"
+    },
+    "/users/{userId}/reviews/{reviewId}": {
+      "schema": "TripReview",
+      "description": "Concluded trip destination and activity reviews used to refine AI recommendations"
+    }
+  }
+}

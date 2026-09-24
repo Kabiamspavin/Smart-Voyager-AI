@@ -1,0 +1,6 @@
+{
+  "name": "Smart Voyager AI",
+  "description": "Agentic AI-based smart travel planner for personalized and real-time travel planning with live flights, weather, places, and budget optimization.",
+  "requestFramePermissions": ["geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
